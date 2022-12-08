@@ -81,7 +81,7 @@ sf::Vector2f rule3(Boid *bJ) {
 
 }
 
-void limit_velocity(Boid *b)
+void limitVelocity(Boid *b)
 {
     int vlim = 4; // Tweak velocity speed
     sf::Vector2f v;
@@ -93,7 +93,7 @@ void limit_velocity(Boid *b)
     }
 }
 
-void move_all_boids_to_new_positions() 
+void newPositionForBoids() 
 {
 
     sf::Vector2f v1, v2, v3;
@@ -105,13 +105,13 @@ void move_all_boids_to_new_positions()
         v3 = rule3(b);
 
         b->velocity = b->velocity + v1 + v2 + v3;
-        limit_velocity(b);
+        limitVelocity(b);
         b->position = b->position + b->velocity;
     }
 }
 
 //Bounding the position
-sf::Vector2f bound_position(Boid b)
+sf::Vector2f boundPosition(Boid b)
 {
     int Xmin = 500;
     int Xmax = 500; 
@@ -169,8 +169,8 @@ int main()
         for (auto b : boidList)
         {
             b->Draw(window);
-            bound_position;
-            move_all_boids_to_new_positions();
+            boundPosition;
+            newPositionForBoids();
         }
         window.display();
     }
